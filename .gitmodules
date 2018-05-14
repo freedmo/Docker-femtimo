@@ -1,0 +1,9 @@
+[submodule "Docker-PHP-FPM"]
+	path = Docker-PHP-FPM
+	url = https://github.com/freedmo/Docker-PHP-FPM.git
+[submodule "Docker-MySQL"]
+	path = Docker-MySQL
+	url = https://github.com/freedmo/Docker-MySQL.git
+[submodule "Docker-Nginx"]
+	path = Docker-Nginx
+	url = https://github.com/freedmo/Docker-Nginx.git

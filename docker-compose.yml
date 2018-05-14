@@ -1,0 +1,31 @@
+version: '3'
+services: 
+  nginx-app:
+    build: ./Docker-Nginx
+    container_name: nginx-app
+    hostname: nginx-app
+    restart: always
+    ports: 
+      - "80:80"
+      - "443:443"
+  php-fpm-app:
+    build: ./Docker-PHP-FPM
+    container_name: php-fpm-app
+    hostname: php-fpm-app
+    restart: always
+  mysql-app:
+    build: ./Docker-MySQL
+    container_name: mysql-app
+    hostname: mysql-app
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+    volumes:
+      - mysql-app-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+  mysql-app-data:
