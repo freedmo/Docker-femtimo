@@ -1,29 +1,27 @@
 version: '3'
 services: 
-  nginx-app:
+  nginx-PROJECTNAME:
     build: ./Docker-Nginx
-    container_name: nginx-app
-    hostname: nginx-app
+    container_name: nginx-${PROJECT_NAME}
+    hostname: nginx-${PROJECT_NAME}
     restart: always
     volumes:
-      - ${PROJECT_PATH}:/var/www/demo
+      - ${PROJECT_PATH}:/var/www/${PROJECT_NAME}
       - .\data\nginx\conf.d\:/etc/nginx/conf.d
     ports: 
       - "80:80"
       - "443:443"
-  php-fpm-app:
+  php-fpm-PROJECTNAME:
     build: ./Docker-PHP-FPM
-    container_name: php-fpm-app
-    hostname: php-fpm-app
+    container_name: php-fpm-${PROJECT_NAME}
+    hostname: php-fpm-${PROJECT_NAME}
     restart: always
-    volumes:
-      - ${PROJECT_PATH}:/var/www/demo
     ports:
       - "9000:9000"
-  mysql-app:
+  mysql-PROJECTNAME:
     build: ./Docker-MySQL
-    container_name: mysql-app
-    hostname: mysql-app
+    container_name: mysql-${PROJECT_NAME}
+    hostname: mysql-${PROJECT_NAME}
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -31,8 +29,8 @@ services:
       MYSQL_USER: app
       MYSQL_PASSWORD: app
     volumes:
-      - mysql-app-data:/var/lib/mysql
+      - mysql-${PROJECT_NAME}-data:/var/lib/mysql
     ports:
       - "3306:3306"
 volumes:
-  mysql-app-data:
+  mysql-PROJECTNAME-data:
