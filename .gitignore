@@ -1,3 +1,4 @@
 /data/nginx/conf.d
 !/data/nginx/conf.d/.gitkeep
 .env
+/.idea
