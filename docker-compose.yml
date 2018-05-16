@@ -5,6 +5,9 @@ services:
     container_name: nginx-app
     hostname: nginx-app
     restart: always
+    volumes:
+      - ${PROJECT_PATH}:/var/www/demo
+      - .\data\nginx\conf.d\:/etc/nginx/conf.d
     ports: 
       - "80:80"
       - "443:443"
@@ -13,6 +16,10 @@ services:
     container_name: php-fpm-app
     hostname: php-fpm-app
     restart: always
+    volumes:
+      - ${PROJECT_PATH}:/var/www/demo
+    ports:
+      - "9000:9000"
   mysql-app:
     build: ./Docker-MySQL
     container_name: mysql-app
