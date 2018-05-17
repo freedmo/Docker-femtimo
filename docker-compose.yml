@@ -1,6 +1,6 @@
 version: '3'
 services: 
-  nginx-PROJECTNAME:
+  nginx-femtimo:
     build: ./Docker-Nginx
     container_name: nginx-${PROJECT_NAME}
     hostname: nginx-${PROJECT_NAME}
@@ -11,14 +11,17 @@ services:
     ports: 
       - "80:80"
       - "443:443"
-  php-fpm-PROJECTNAME:
+  php-fpm-femtimo:
     build: ./Docker-PHP-FPM
     container_name: php-fpm-${PROJECT_NAME}
     hostname: php-fpm-${PROJECT_NAME}
     restart: always
+    volumes:
+      - ${PROJECT_PATH}:/var/www/${PROJECT_NAME}
+    working_dir: /var/www/${PROJECT_NAME}
     ports:
-      - "9000:9000"
-  mysql-PROJECTNAME:
+      - "9000:9000"      
+  mysql-femtimo:
     build: ./Docker-MySQL
     container_name: mysql-${PROJECT_NAME}
     hostname: mysql-${PROJECT_NAME}
@@ -33,4 +36,4 @@ services:
     ports:
       - "3306:3306"
 volumes:
-  mysql-PROJECTNAME-data:
+  mysql-femtimo-data:
